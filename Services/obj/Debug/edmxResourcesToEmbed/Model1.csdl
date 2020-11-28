@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLCHDoChoiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="doChoi">
+    <Key>
+      <PropertyRef Name="Ma_sp" />
+    </Key>
+    <Property Name="stt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ma_sp" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Ten_sp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Nsx" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Don_gia" Type="Int32" />
+    <Property Name="Loai_do_choi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HoaDons" Relationship="Self.FK__HoaDon__Ma_sp__1920BF5C" FromRole="doChoi" ToRole="HoaDon" />
+  </EntityType>
+  <EntityType Name="HoaDon">
+    <Key>
+      <PropertyRef Name="Ma_kh" />
+      <PropertyRef Name="Ma_sp" />
+    </Key>
+    <Property Name="stt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ma_kh" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Ma_sp" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Ho_ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="So_luong" Type="Int32" />
+    <Property Name="Gia_tien" Type="Int32" />
+    <Property Name="Tien_khach_tra" Type="Int32" />
+    <NavigationProperty Name="doChoi" Relationship="Self.FK__HoaDon__Ma_sp__1920BF5C" FromRole="HoaDon" ToRole="doChoi" />
+    <NavigationProperty Name="khachHang" Relationship="Self.FK__HoaDon__Ma_kh__182C9B23" FromRole="HoaDon" ToRole="khachHang" />
+  </EntityType>
+  <EntityType Name="khachHang">
+    <Key>
+      <PropertyRef Name="Ma_kh" />
+    </Key>
+    <Property Name="stt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ma_kh" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Ho_ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="Gioi_tinh" Type="Boolean" />
+    <Property Name="Lan_mua" Type="Int32" />
+    <NavigationProperty Name="HoaDons" Relationship="Self.FK__HoaDon__Ma_kh__182C9B23" FromRole="khachHang" ToRole="HoaDon" />
+  </EntityType>
+  <EntityType Name="nhanVien">
+    <Key>
+      <PropertyRef Name="Ma_nv" />
+    </Key>
+    <Property Name="Ma_nv" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ho_ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gioi_tinh" Type="Boolean" />
+    <Property Name="Chuc_vu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Ngay_sinh" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="taiKhoan">
+    <Key>
+      <PropertyRef Name="stt" />
+      <PropertyRef Name="tenTK" />
+    </Key>
+    <Property Name="stt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Chuc_vu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tenTK" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="matkhau" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK__HoaDon__Ma_sp__1920BF5C">
+    <End Role="doChoi" Type="Self.doChoi" Multiplicity="1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doChoi">
+        <PropertyRef Name="Ma_sp" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="Ma_sp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HoaDon__Ma_kh__182C9B23">
+    <End Role="khachHang" Type="Self.khachHang" Multiplicity="1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="khachHang">
+        <PropertyRef Name="Ma_kh" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="Ma_kh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLCHDoChoiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="doChois" EntityType="Self.doChoi" />
+    <EntitySet Name="HoaDons" EntityType="Self.HoaDon" />
+    <EntitySet Name="khachHangs" EntityType="Self.khachHang" />
+    <EntitySet Name="nhanViens" EntityType="Self.nhanVien" />
+    <EntitySet Name="taiKhoans" EntityType="Self.taiKhoan" />
+    <AssociationSet Name="FK__HoaDon__Ma_sp__1920BF5C" Association="Self.FK__HoaDon__Ma_sp__1920BF5C">
+      <End Role="doChoi" EntitySet="doChois" />
+      <End Role="HoaDon" EntitySet="HoaDons" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HoaDon__Ma_kh__182C9B23" Association="Self.FK__HoaDon__Ma_kh__182C9B23">
+      <End Role="khachHang" EntitySet="khachHangs" />
+      <End Role="HoaDon" EntitySet="HoaDons" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

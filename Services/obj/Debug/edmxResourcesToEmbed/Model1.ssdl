@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLCHDoChoiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="doChoi">
+    <Key>
+      <PropertyRef Name="Ma_sp" />
+    </Key>
+    <Property Name="stt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ma_sp" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="Ten_sp" Type="nvarchar" MaxLength="50" />
+    <Property Name="Nsx" Type="nvarchar" MaxLength="50" />
+    <Property Name="Don_gia" Type="int" />
+    <Property Name="Loai_do_choi" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="HoaDon">
+    <Key>
+      <PropertyRef Name="Ma_kh" />
+      <PropertyRef Name="Ma_sp" />
+    </Key>
+    <Property Name="stt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ma_kh" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="Ma_sp" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="Ho_ten" Type="nvarchar" MaxLength="50" />
+    <Property Name="SDT" Type="char" MaxLength="20" />
+    <Property Name="So_luong" Type="int" />
+    <Property Name="Gia_tien" Type="int" />
+    <Property Name="Tien_khach_tra" Type="int" />
+  </EntityType>
+  <EntityType Name="khachHang">
+    <Key>
+      <PropertyRef Name="Ma_kh" />
+    </Key>
+    <Property Name="stt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ma_kh" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="Ho_ten" Type="nvarchar" MaxLength="50" />
+    <Property Name="SDT" Type="char" MaxLength="20" />
+    <Property Name="Gioi_tinh" Type="bit" />
+    <Property Name="Lan_mua" Type="int" />
+  </EntityType>
+  <EntityType Name="nhanVien">
+    <Key>
+      <PropertyRef Name="Ma_nv" />
+    </Key>
+    <Property Name="Ma_nv" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ho_ten" Type="nvarchar" MaxLength="50" />
+    <Property Name="Diachi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gioi_tinh" Type="bit" />
+    <Property Name="Chuc_vu" Type="varchar" MaxLength="50" />
+    <Property Name="Ngay_sinh" Type="datetime" />
+  </EntityType>
+  <EntityType Name="taiKhoan">
+    <Key>
+      <PropertyRef Name="stt" />
+      <PropertyRef Name="tenTK" />
+    </Key>
+    <Property Name="stt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenNV" Type="nvarchar" MaxLength="50" />
+    <Property Name="Chuc_vu" Type="varchar" MaxLength="50" />
+    <Property Name="tenTK" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="matkhau" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__HoaDon__Ma_kh__182C9B23">
+    <End Role="khachHang" Type="Self.khachHang" Multiplicity="1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="khachHang">
+        <PropertyRef Name="Ma_kh" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="Ma_kh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HoaDon__Ma_sp__1920BF5C">
+    <End Role="doChoi" Type="Self.doChoi" Multiplicity="1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doChoi">
+        <PropertyRef Name="Ma_sp" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="Ma_sp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLCHDoChoiModelStoreContainer">
+    <EntitySet Name="doChoi" EntityType="Self.doChoi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="khachHang" EntityType="Self.khachHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="nhanVien" EntityType="Self.nhanVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="taiKhoan" EntityType="Self.taiKhoan" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__HoaDon__Ma_kh__182C9B23" Association="Self.FK__HoaDon__Ma_kh__182C9B23">
+      <End Role="khachHang" EntitySet="khachHang" />
+      <End Role="HoaDon" EntitySet="HoaDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HoaDon__Ma_sp__1920BF5C" Association="Self.FK__HoaDon__Ma_sp__1920BF5C">
+      <End Role="doChoi" EntitySet="doChoi" />
+      <End Role="HoaDon" EntitySet="HoaDon" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

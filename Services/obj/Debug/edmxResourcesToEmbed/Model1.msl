@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLCHDoChoiModelStoreContainer" CdmEntityContainer="QLCHDoChoiEntities">
+    <EntitySetMapping Name="doChois">
+      <EntityTypeMapping TypeName="QLCHDoChoiModel.doChoi">
+        <MappingFragment StoreEntitySet="doChoi">
+          <ScalarProperty Name="stt" ColumnName="stt" />
+          <ScalarProperty Name="Ma_sp" ColumnName="Ma_sp" />
+          <ScalarProperty Name="Ten_sp" ColumnName="Ten_sp" />
+          <ScalarProperty Name="Nsx" ColumnName="Nsx" />
+          <ScalarProperty Name="Don_gia" ColumnName="Don_gia" />
+          <ScalarProperty Name="Loai_do_choi" ColumnName="Loai_do_choi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HoaDons">
+      <EntityTypeMapping TypeName="QLCHDoChoiModel.HoaDon">
+        <MappingFragment StoreEntitySet="HoaDon">
+          <ScalarProperty Name="stt" ColumnName="stt" />
+          <ScalarProperty Name="Ma_kh" ColumnName="Ma_kh" />
+          <ScalarProperty Name="Ma_sp" ColumnName="Ma_sp" />
+          <ScalarProperty Name="Ho_ten" ColumnName="Ho_ten" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="So_luong" ColumnName="So_luong" />
+          <ScalarProperty Name="Gia_tien" ColumnName="Gia_tien" />
+          <ScalarProperty Name="Tien_khach_tra" ColumnName="Tien_khach_tra" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="khachHangs">
+      <EntityTypeMapping TypeName="QLCHDoChoiModel.khachHang">
+        <MappingFragment StoreEntitySet="khachHang">
+          <ScalarProperty Name="stt" ColumnName="stt" />
+          <ScalarProperty Name="Ma_kh" ColumnName="Ma_kh" />
+          <ScalarProperty Name="Ho_ten" ColumnName="Ho_ten" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="Gioi_tinh" ColumnName="Gioi_tinh" />
+          <ScalarProperty Name="Lan_mua" ColumnName="Lan_mua" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="nhanViens">
+      <EntityTypeMapping TypeName="QLCHDoChoiModel.nhanVien">
+        <MappingFragment StoreEntitySet="nhanVien">
+          <ScalarProperty Name="Ma_nv" ColumnName="Ma_nv" />
+          <ScalarProperty Name="Ho_ten" ColumnName="Ho_ten" />
+          <ScalarProperty Name="Diachi" ColumnName="Diachi" />
+          <ScalarProperty Name="Gioi_tinh" ColumnName="Gioi_tinh" />
+          <ScalarProperty Name="Chuc_vu" ColumnName="Chuc_vu" />
+          <ScalarProperty Name="Ngay_sinh" ColumnName="Ngay_sinh" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="taiKhoans">
+      <EntityTypeMapping TypeName="QLCHDoChoiModel.taiKhoan">
+        <MappingFragment StoreEntitySet="taiKhoan">
+          <ScalarProperty Name="stt" ColumnName="stt" />
+          <ScalarProperty Name="TenNV" ColumnName="TenNV" />
+          <ScalarProperty Name="Chuc_vu" ColumnName="Chuc_vu" />
+          <ScalarProperty Name="tenTK" ColumnName="tenTK" />
+          <ScalarProperty Name="matkhau" ColumnName="matkhau" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
